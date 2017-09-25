@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "holiday.asu.systemheating"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+kapt {
+    generateStubs = true
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    provided 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'com.squareup.okhttp:okhttp:2.0.0'
+    implementation 'com.android.support:support-annotations:26.0.1'
+    implementation 'com.android.support:recyclerview-v7:26.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.github.skydoves:medal:1.0.1'
+    implementation 'com.google.android.gms:play-services-maps:11.2.0'
+    implementation 'com.android.support:design:26.0.1'
+
+    compile 'com.google.dagger:dagger:2.11-rc2'
+    compile 'com.google.dagger:dagger-android:2.11-rc2'
+    compile 'com.google.dagger:dagger-android-support:2.11-rc2'
+    kapt 'com.google.dagger:dagger-compiler:2.11-rc2'
+    kapt 'com.google.dagger:dagger-android-processor:2.11-rc2'
+}
