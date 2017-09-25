@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import holiday.asu.asuholidays.core.app.AndroidSampleApp
+import holiday.asu.systemheating.core.app.AndroidSampleApp
 import holiday.asu.systemheating.core.di.builder.ActivityBuilder
 import holiday.asu.systemheating.di.network.ApiModule
 import holiday.asu.systemheating.di.network.AppModule
@@ -16,10 +16,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         AndroidInjectionModule::class,
         AppModule::class,
-        ActivityBuilder::class,
-        ApiModule::class),
-        dependencies = arrayOf (
-                NetworkComponent::class)
+        ActivityBuilder::class)
 )
 
 interface AppComponent {
@@ -28,8 +25,6 @@ interface AppComponent {
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
-        fun networkModule(module: NetworkModule): Builder
-        fun networkComponent(component: NetworkComponent): Builder
         fun build(): AppComponent
     }
 

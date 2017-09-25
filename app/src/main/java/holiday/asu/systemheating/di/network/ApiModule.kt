@@ -2,7 +2,7 @@ package holiday.asu.systemheating.di.network
 
 import dagger.Module
 import dagger.Provides
-import holiday.asu.asuholidays.service.UserService
+import holiday.asu.systemheating.service.UserService
 import retrofit2.Retrofit
 
 @Module

@@ -1,7 +1,7 @@
 package holiday.asu.systemheating.base
 
-import holiday.asu.asuholidays.service.UserViewInterface
 import holiday.asu.systemheating.model.UserModel
+import holiday.asu.systemheating.service.UserViewInterface
 import io.reactivex.observers.DisposableObserver
 
 class UserPresenter : BasePresenter{
