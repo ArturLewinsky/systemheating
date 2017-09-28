@@ -8,7 +8,6 @@ import holiday.asu.systemheating.core.app.AndroidSampleApp
 import holiday.asu.systemheating.core.di.builder.ActivityBuilder
 import holiday.asu.systemheating.di.network.ApiModule
 import holiday.asu.systemheating.di.network.AppModule
-import holiday.asu.systemheating.di.network.NetworkComponent
 import holiday.asu.systemheating.di.network.NetworkModule
 import javax.inject.Singleton
 
@@ -16,8 +15,9 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         AndroidInjectionModule::class,
         AppModule::class,
-        ActivityBuilder::class)
-)
+        ActivityBuilder::class,
+        NetworkModule::class,
+        ApiModule::class))
 
 interface AppComponent {
 
@@ -26,6 +26,7 @@ interface AppComponent {
         @BindsInstance
         fun application(application: Application): Builder
         fun build(): AppComponent
+        fun apiModule(apiModule: ApiModule): Builder
     }
 
     fun inject(app: AndroidSampleApp)

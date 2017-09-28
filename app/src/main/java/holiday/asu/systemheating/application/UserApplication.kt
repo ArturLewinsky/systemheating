@@ -7,7 +7,6 @@ import holiday.asu.systemheating.di.network.NetworkComponent
 import holiday.asu.systemheating.di.network.NetworkModule
 import holiday.asu.systemheating.model.Constant
 
-
 class UserApplication : Application(){
 
 
