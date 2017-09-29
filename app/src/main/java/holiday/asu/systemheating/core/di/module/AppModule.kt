@@ -7,9 +7,6 @@ import android.content.Context
 import javax.inject.Singleton
 import dagger.Provides
 
-
-
-
 @Module(subcomponents = arrayOf(
         MainActivityComponent::class
 ))
