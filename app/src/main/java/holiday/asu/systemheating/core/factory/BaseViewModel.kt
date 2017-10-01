@@ -1,18 +1,23 @@
 package holiday.asu.systemheating.core.factory
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import android.arch.lifecycle.ViewModel
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
+import holiday.asu.systemheating.service.ServiceResult
 
-open class BaseViewModel : ViewModel{
 
+open class BaseViewModel<T> : ViewModel{
+
+    protected var mData = MutableLiveData<ServiceResult<T>>()
     protected var mCompositeDisposable: CompositeDisposable
 
     constructor(){
         mCompositeDisposable = CompositeDisposable()
+    }
+
+    fun getData() : LiveData<ServiceResult<T>> {
+        return mData
     }
 
     fun clearSubscriptions() {
@@ -23,15 +28,7 @@ open class BaseViewModel : ViewModel{
         clearSubscriptions()
     }
 
-    protected fun <F> subscribe(observable: Observable<F>, observer: DisposableObserver<F>) {
-        val subscription = observable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribeWith(observer)
-        configureSubscription()!!.add(subscription)
-    }
-
-    private fun configureSubscription(): CompositeDisposable? {
+    protected fun configureSubscription(): CompositeDisposable? {
         if (mCompositeDisposable == null || mCompositeDisposable!!.isDisposed) {
             mCompositeDisposable = CompositeDisposable()
         }
