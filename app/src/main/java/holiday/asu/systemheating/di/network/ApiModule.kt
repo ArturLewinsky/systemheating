@@ -8,7 +8,6 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
-
     @Singleton
     @Provides
     fun usersService(retrofit: Retrofit): UserService {

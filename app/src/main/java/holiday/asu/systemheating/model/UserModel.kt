@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 open class UserModel {
 
-    constructor(name: String?, surrname: String?, title: String?, favorite: Boolean) {
+    constructor(name: String, surrname: String, title: String, favorite: Boolean) {
         this.name = name
         this.surrname = surrname
         this.title = title
@@ -18,17 +18,17 @@ open class UserModel {
 
     @SerializedName("name")
     @Expose
-    var name: String? = null
+    var name: String
 
     @SerializedName("surrname")
     @Expose
-    var surrname: String? = null
+    var surrname: String
 
     @SerializedName("title")
     @Expose
-    var title: String? = null
+    var title: String
 
     @SerializedName("favorite")
     @Expose
-    var favorite: Boolean? = null
+    var favorite: Boolean
 }

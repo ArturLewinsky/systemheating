@@ -1,44 +1,58 @@
 package holiday.asu.systemheating.core.factory
 
-import io.reactivex.observers.DisposableObserver
-import holiday.asu.systemheating.service.ServiceResult
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+
 import holiday.asu.systemheating.model.UserModel
+import holiday.asu.systemheating.service.ServiceResult
 import holiday.asu.systemheating.service.UserService
 import holiday.asu.systemheating.service.UserViewInterface
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 
-class ForcesListViewModel : BaseViewModel<List<UserModel>> {
+
+class ForcesListViewModel : BaseViewModel<List<UserModel>>, UserViewInterface {
 
     private var mServiceApi: UserService
-    private var mViewInterface : UserViewInterface
     var mListArray: ArrayList<UserModel>
 
-    constructor(ServiceApi: UserService, viewInterface: UserViewInterface) : super() {
+    constructor(ServiceApi: UserService) : super() {
         this.mServiceApi = ServiceApi
-        this.mViewInterface = viewInterface
         this.mListArray = ArrayList<UserModel>()
     }
 
-    fun fetchUsers() {
+    override fun getUsers(): Observable<List<UserModel>> {
+        return mServiceApi.getUsers()
+    }
+
+    override fun onUsers(usersModel: List<UserModel>) {
+    }
+
+    override fun onError(message: String) {
+    }
+
+    override fun onCompleted() {
+    }
+
+    fun loadData() {
         clearSubscriptions()
-        subscribe(mViewInterface.getUsers(), object: DisposableObserver<List<UserModel>>() {
+        subscribe(getUsers(), object: DisposableObserver<List<UserModel>>() {
             override fun onComplete() {
-                mViewInterface.onCompleted()
+                onCompleted()
             }
 
             override fun onError(e: Throwable) {
-                mViewInterface.onError(e.toString())
+                onError(e.toString())
             }
 
             override fun onNext(userModel: List<UserModel> ) {
-                mViewInterface.onUsers(userModel)
+                onUsers(userModel)
                 mListArray = userModel as ArrayList<UserModel>
                 mData.setValue(ServiceResult(userModel))
             }
         })
     }
+
     protected fun <F> subscribe(observable: Observable<F>, observer: DisposableObserver<F>) {
         val subscription = observable
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,20 +1,19 @@
 package holiday.asu.systemheating.core.factory
-import android.arch.lifecycle.ViewModel
-import holiday.asu.systemheating.service.UserService
-import holiday.asu.systemheating.service.UserViewInterface
 
-class ViewModelFactory {
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import holiday.asu.systemheating.service.UserService
+
+class ViewModelFactory : ViewModelProvider.Factory {
 
     private var mServiceApi: UserService
-    private var mViewInterface : UserViewInterface
 
-    constructor(userService: UserService, userViewInterface: UserViewInterface){
+    constructor(userService: UserService){
         mServiceApi = userService
-        this.mViewInterface = userViewInterface
     }
-    fun <T : ViewModel> create(modelClass: Class<T>): T? {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T? {
         return if (modelClass.isAssignableFrom(ForcesListViewModel::class.java!!)) {
-            ForcesListViewModel(mServiceApi, mViewInterface) as T
+            ForcesListViewModel(mServiceApi) as T
         } else null
     }
 }

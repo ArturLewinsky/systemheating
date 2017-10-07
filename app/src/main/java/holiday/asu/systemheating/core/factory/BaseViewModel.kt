@@ -29,7 +29,7 @@ open class BaseViewModel<T> : ViewModel{
     }
 
     protected fun configureSubscription(): CompositeDisposable? {
-        if (mCompositeDisposable == null || mCompositeDisposable!!.isDisposed) {
+        if (mCompositeDisposable.isDisposed) {
             mCompositeDisposable = CompositeDisposable()
         }
         return this.mCompositeDisposable

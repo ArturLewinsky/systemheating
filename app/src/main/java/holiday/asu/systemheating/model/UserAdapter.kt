@@ -33,7 +33,7 @@ open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
         holder.mName.setText(currUser.name)
         holder.mSurrname.setText(currUser.surrname)
         holder.mTitle.setText(currUser.title)
-        if(currUser.favorite!!.equals(true))
+        if(currUser.favorite.equals(true))
             holder.mFavorite.isChecked = true
     }
 

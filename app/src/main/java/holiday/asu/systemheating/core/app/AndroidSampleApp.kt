@@ -7,12 +7,10 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import holiday.asu.systemheating.core.di.component.DaggerAppComponent
 
-
 class AndroidSampleApp : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
-
     override fun onCreate() {
         super.onCreate()
         DaggerAppComponent
@@ -20,7 +18,6 @@ class AndroidSampleApp : Application(), HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this)
-
     }
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
