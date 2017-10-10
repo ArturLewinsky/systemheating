@@ -8,7 +8,6 @@ import dagger.Provides
 import holiday.asu.systemheating.core.factory.ViewModelFactory
 import holiday.asu.systemheating.di.activity.testactivity.MainActivityComponent
 import holiday.asu.systemheating.service.UserService
-import holiday.asu.systemheating.service.UserViewInterface
 
 @Module(subcomponents = arrayOf(
         MainActivityComponent::class

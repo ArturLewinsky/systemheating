@@ -4,20 +4,24 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import android.arch.lifecycle.ViewModel
-import holiday.asu.systemheating.service.ServiceResult
-
 
 open class BaseViewModel<T> : ViewModel{
 
-    protected var mData = MutableLiveData<ServiceResult<T>>()
+    protected var mData = MutableLiveData<T>()
+    protected var mLoading = MutableLiveData<Boolean>()
     protected var mCompositeDisposable: CompositeDisposable
 
     constructor(){
         mCompositeDisposable = CompositeDisposable()
     }
 
-    fun getData() : LiveData<ServiceResult<T>> {
+    fun getData() : LiveData<T> {
+
         return mData
+    }
+
+    fun getLoadingStatus() : LiveData<Boolean> {
+        return mLoading
     }
 
     fun clearSubscriptions() {
@@ -26,12 +30,5 @@ open class BaseViewModel<T> : ViewModel{
 
     override fun onCleared() {
         clearSubscriptions()
-    }
-
-    protected fun configureSubscription(): CompositeDisposable? {
-        if (mCompositeDisposable.isDisposed) {
-            mCompositeDisposable = CompositeDisposable()
-        }
-        return this.mCompositeDisposable
     }
 }

@@ -21,7 +21,6 @@ class DialogLoad : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(getActivity())
         val inflater = getActivity().getLayoutInflater()
-
         builder.setView(inflater.inflate(R.layout.dialog_progress, null))
         return builder.create()
     }
