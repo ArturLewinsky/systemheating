@@ -16,7 +16,6 @@ open class BaseViewModel<T> : ViewModel{
     }
 
     fun getData() : LiveData<T> {
-
         return mData
     }
 

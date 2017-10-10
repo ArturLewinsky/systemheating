@@ -6,14 +6,12 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ForcesListViewModel : BaseViewModel<List<UserModel>>{
+class ListViewModel : BaseViewModel<List<UserModel>>{
 
     private var mServiceApi: UserService
-    var mListArray: ArrayList<UserModel>
 
     constructor(ServiceApi: UserService) : super() {
         this.mServiceApi = ServiceApi
-        this.mListArray = ArrayList<UserModel>()
         loadAsu(mServiceApi.getUsers())
     }
 

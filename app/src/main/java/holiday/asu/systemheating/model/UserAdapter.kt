@@ -72,4 +72,5 @@ open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
     interface UserClickListener {
         fun onClick(position: Int, name: String)
     }
+
 }

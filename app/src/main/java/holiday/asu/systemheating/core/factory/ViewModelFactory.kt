@@ -12,8 +12,8 @@ class ViewModelFactory : ViewModelProvider.Factory {
         mServiceApi = userService
     }
     override fun <T : ViewModel> create(modelClass: Class<T>): T? {
-        return if (modelClass.isAssignableFrom(ForcesListViewModel::class.java!!)) {
-            ForcesListViewModel(mServiceApi) as T
+        return if (modelClass.isAssignableFrom(ListViewModel::class.java!!)) {
+            ListViewModel(mServiceApi) as T
         } else null
     }
 }

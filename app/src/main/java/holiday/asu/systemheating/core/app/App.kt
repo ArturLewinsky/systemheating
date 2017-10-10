@@ -7,7 +7,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import holiday.asu.systemheating.core.di.component.DaggerAppComponent
 
-class AndroidSampleApp : Application(), HasActivityInjector {
+class App : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>

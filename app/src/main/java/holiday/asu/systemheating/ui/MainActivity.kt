@@ -6,32 +6,37 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import dagger.android.AndroidInjection
 import holiday.asu.systemheating.R
-import holiday.asu.systemheating.core.factory.ForcesListViewModel
+import holiday.asu.systemheating.core.factory.ListViewModel
 import javax.inject.Inject
 import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.core.factory.ViewModelFactory
 import holiday.asu.systemheating.model.UserAdapter
+import holiday.asu.systemheating.utilly.BaseActivity
+import holiday.asu.systemheating.utilly.DialogLoad
 
-class MainActivity :  BaseActivity<ForcesListViewModel>(), UserAdapter.UserClickListener {
+class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListener {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelFactory
     private lateinit var  mAdapter: UserAdapter
+    val progressDialog = DialogLoad()
+    lateinit var mUserList: ArrayList<UserModel>
+
     @BindView(R.id.recyclerView)
     lateinit var mRecyclerView: RecyclerView
-    val progressDialog = DialogLoad()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(MainActivity@this)
         AndroidInjection.inject(this)
-        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ForcesListViewModel::class.java)
+        mUserList = ArrayList<UserModel>()
+        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ListViewModel::class.java)
         observeLoadingStatus()
         observeResponse()
         configViews()
@@ -42,7 +47,8 @@ class MainActivity :  BaseActivity<ForcesListViewModel>(), UserAdapter.UserClick
     }
 
     private fun processResponse(response: List<UserModel>?) {
-        Toast.makeText(this,response.toString(), Toast.LENGTH_LONG).show()
+        mUserList = response as ArrayList<UserModel>
+        mAdapter.addUsers(response)
     }
 
     private fun observeLoadingStatus() {
@@ -68,7 +74,6 @@ class MainActivity :  BaseActivity<ForcesListViewModel>(), UserAdapter.UserClick
     override fun onClick(position: Int, name: String) {
 
     }
-
 }
 
 

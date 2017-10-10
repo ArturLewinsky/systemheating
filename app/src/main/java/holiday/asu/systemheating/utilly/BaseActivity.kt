@@ -1,8 +1,6 @@
-package holiday.asu.systemheating.ui
+package holiday.asu.systemheating.utilly
 
 import android.arch.lifecycle.LifecycleActivity
-import android.support.design.widget.Snackbar
-import android.arch.lifecycle.LifecycleFragment
 import holiday.asu.systemheating.core.factory.BaseViewModel
 
 

@@ -20,11 +20,13 @@ class Response<T> {
         this.error = error!!
     }
 
-    fun <T> success(data: T): Response<T> {
-        return Response(Status.SUCCESS, data, null)
-    }
+    companion object {
+        fun <T> success(data: T): Response<T> {
+            return Response(Status.SUCCESS, data, null)
+        }
 
-    fun <T> error(error: Throwable): Response<T> {
-        return Response(Status.ERROR, null, error)
+        fun <T> error(error: Throwable): Response<T> {
+            return Response(Status.ERROR, null, error)
+        }
     }
 }

@@ -1,4 +1,4 @@
-package holiday.asu.systemheating.ui
+package holiday.asu.systemheating.utilly
 
 import android.app.Dialog
 import android.graphics.Color
