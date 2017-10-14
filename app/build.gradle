@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "holiday.asu.systemheating"
         minSdkVersion 21
@@ -28,19 +28,15 @@ kapt {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     implementation 'com.google.code.gson:gson:2.2.4'
-    implementation 'com.android.support:support-annotations:26.0.1'
-    implementation 'com.android.support:recyclerview-v7:26.0.1'
     implementation 'com.google.android.gms:play-services-maps:11.2.0'
-    implementation 'com.android.support:design:26.0.1'
+    implementation 'com.android.support:design:26.1.0'
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -64,9 +60,14 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:2.11-rc2"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.11-rc2"
     //ARCH
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha8"
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha8'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha8"
-    compile "android.arch.lifecycle:runtime:1.0.0-alpha8"
-    compile "android.arch.lifecycle:extensions:1.0.0-alpha8"
+    compile 'android.arch.lifecycle:runtime:1.0.0-alpha8'
+    compile 'android.arch.lifecycle:extensions:1.0.0-alpha8'
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha8"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:support-v13:26.1.0'
+    implementation 'com.android.support:support-annotations:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }

@@ -2,10 +2,13 @@ package holiday.asu.systemheating.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.Button
 import butterknife.BindView
 import butterknife.ButterKnife
 import dagger.android.AndroidInjection
@@ -15,6 +18,7 @@ import javax.inject.Inject
 import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.core.factory.ViewModelFactory
 import holiday.asu.systemheating.model.UserAdapter
+import holiday.asu.systemheating.ui.NavigationBottom.NavigationActivity
 import holiday.asu.systemheating.utilly.BaseActivity
 import holiday.asu.systemheating.utilly.DialogLoad
 
@@ -29,6 +33,8 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
     @BindView(R.id.recyclerView)
     lateinit var mRecyclerView: RecyclerView
 
+    @BindView(R.id.button2)
+    lateinit var mButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,11 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
         observeLoadingStatus()
         observeResponse()
         configViews()
+
+        mButton.setOnClickListener(View.OnClickListener {
+            var intent: Intent = Intent(applicationContext, NavigationActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun observeResponse() {
