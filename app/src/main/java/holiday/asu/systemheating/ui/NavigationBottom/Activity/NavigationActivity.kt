@@ -1,25 +1,22 @@
-package holiday.asu.systemheating.ui.NavigationBottom
+package holiday.asu.systemheating.ui.NavigationBottom.Activity
 
 import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import butterknife.BindView
 import butterknife.ButterKnife
 import dagger.android.AndroidInjection
 import holiday.asu.systemheating.R
-import dagger.android.DispatchingAndroidInjector
-import javax.inject.Inject
-import dagger.android.AndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import holiday.asu.systemheating.ui.NavigationBottom.Fragments.MainNavigationFragment
+import holiday.asu.systemheating.ui.NavigationBottom.Fragments.OptionNavigationFragment
+import holiday.asu.systemheating.model.ViewPagerAdapter
 
 
 class NavigationActivity : LifecycleActivity(),
         BottomNavigationView.OnNavigationItemSelectedListener,
-        ViewPager.OnPageChangeListener,
-        HasSupportFragmentInjector {
+        ViewPager.OnPageChangeListener {
 
     @BindView(R.id.viewpager)
     lateinit var mViewPager: ViewPager
@@ -31,9 +28,6 @@ class NavigationActivity : LifecycleActivity(),
     lateinit var mOptionNavigationFragment: OptionNavigationFragment
 
     var mMenuItem: MenuItem? = null
-
-    @Inject
-    lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +72,4 @@ class NavigationActivity : LifecycleActivity(),
         viewPager.adapter = adapter
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return fragmentDispatchingAndroidInjector
-    }
 }

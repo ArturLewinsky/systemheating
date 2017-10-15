@@ -1,28 +1,28 @@
-package holiday.asu.systemheating.ui
+package holiday.asu.systemheating.ui.NavigationBottom.Fragments
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
-import dagger.android.AndroidInjection
 import holiday.asu.systemheating.R
+import dagger.android.support.AndroidSupportInjection
 import holiday.asu.systemheating.core.factory.ListViewModel
-import javax.inject.Inject
-import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.core.factory.ViewModelFactory
 import holiday.asu.systemheating.model.UserAdapter
-import holiday.asu.systemheating.ui.NavigationBottom.Activity.NavigationActivity
-import holiday.asu.systemheating.utilly.BaseActivity
+import holiday.asu.systemheating.model.UserModel
+import holiday.asu.systemheating.utilly.BaseFragment
 import holiday.asu.systemheating.utilly.DialogLoad
+import javax.inject.Inject
 
-class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListener {
+
+class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserClickListener {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelFactory
@@ -30,31 +30,44 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
     val progressDialog = DialogLoad()
     lateinit var mUserList: ArrayList<UserModel>
 
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.recyclerViewMain)
     lateinit var mRecyclerView: RecyclerView
 
-    @BindView(R.id.button2)
-    lateinit var mButton: Button
+    companion object {
+        fun newInstance() = MainNavigationFragment()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        ButterKnife.bind(MainActivity@this)
-        AndroidInjection.inject(this)
+        AndroidSupportInjection.inject(this)
+        initViewModel()
         mUserList = ArrayList<UserModel>()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        var view: View = inflater?.inflate(R.layout.fragment_main_navigation, container, false)!!
+        ButterKnife.bind(this, view)
+        return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        configViews()
+
+    }
+
+    private fun initViewModel() {
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ListViewModel::class.java)
         observeLoadingStatus()
         observeResponse()
-        configViews()
-
-        mButton.setOnClickListener(View.OnClickListener {
-            var intent: Intent = Intent(applicationContext, NavigationActivity::class.java)
-            startActivity(intent)
-        })
     }
 
     private fun observeResponse() {
         mViewModel.getData().observe(this, Observer<List<UserModel>> { response -> processResponse(response) })
+    }
+
+    private fun observeLoadingStatus() {
+        mViewModel.getLoadingStatus().observe(this, Observer{ loading -> isLoading(loading) })
     }
 
     private fun processResponse(response: List<UserModel>?) {
@@ -62,20 +75,16 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
         mAdapter.addUsers(response)
     }
 
-    private fun observeLoadingStatus() {
-        mViewModel.getLoadingStatus().observe(this, Observer{ loading -> isLoading(loading) })
-    }
-
     private fun isLoading(loading: Boolean?) {
         if (loading!!)
-            progressDialog.show(supportFragmentManager, "tag")
+            progressDialog.show(childFragmentManager, "tag")
         else
             progressDialog.cancel()
     }
 
     private fun configViews() {
         this.mRecyclerView.recycledViewPool = RecyclerView.RecycledViewPool()
-        this.mRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        this.mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         this.mRecyclerView.setHasFixedSize(true)
         this.mRecyclerView.itemAnimator = DefaultItemAnimator()
         this.mAdapter = UserAdapter(this, layoutInflater)
@@ -85,6 +94,5 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
     override fun onClick(position: Int, name: String) {
 
     }
+
 }
-
-

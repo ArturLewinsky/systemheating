@@ -6,8 +6,8 @@ import holiday.asu.systemheating.di.activity.navigation.Fragments.MainNavigation
 import holiday.asu.systemheating.di.activity.navigation.NavigationActivityModule
 import holiday.asu.systemheating.di.testactivity.MainActivityModule
 import holiday.asu.systemheating.ui.MainActivity
-import holiday.asu.systemheating.ui.NavigationBottom.MainNavigationFragment
-import holiday.asu.systemheating.ui.NavigationBottom.NavigationActivity
+import holiday.asu.systemheating.ui.NavigationBottom.Fragments.MainNavigationFragment
+import holiday.asu.systemheating.ui.NavigationBottom.Activity.NavigationActivity
 
 @Module
 abstract class ActivityBuilder {

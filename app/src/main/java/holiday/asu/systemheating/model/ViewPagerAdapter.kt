@@ -1,4 +1,4 @@
-package holiday.asu.systemheating.ui.NavigationBottom
+package holiday.asu.systemheating.model
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

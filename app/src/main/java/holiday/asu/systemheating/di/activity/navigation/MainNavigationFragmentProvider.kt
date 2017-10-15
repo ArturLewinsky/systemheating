@@ -7,7 +7,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.support.FragmentKey
 import holiday.asu.systemheating.di.activity.navigation.Fragments.MainNavigationFragmentComponent
-import holiday.asu.systemheating.ui.NavigationBottom.MainNavigationFragment
+import holiday.asu.systemheating.ui.NavigationBottom.Fragments.MainNavigationFragment
 
 
 @Module

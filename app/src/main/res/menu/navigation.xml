@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Asu"/>
+        android:icon="@drawable/ic_apps_black_24dp"
+        android:title="Menu"/>
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Asu"/>
+        android:icon="@drawable/ic_build_black_24dp"
+        android:title="Options"/>
 
 </menu>

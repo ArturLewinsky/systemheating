@@ -1,25 +1,20 @@
-package holiday.asu.systemheating.ui.NavigationBottom
+package holiday.asu.systemheating.ui.NavigationBottom.Fragments
 
 import android.arch.lifecycle.LifecycleFragment
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import holiday.asu.systemheating.R
-import dagger.android.support.AndroidSupportInjection
 
-
-
-class MainNavigationFragment : LifecycleFragment() {
+class OptionNavigationFragment : LifecycleFragment() {
 
     companion object {
-        fun newInstance() = MainNavigationFragment()
+        fun newInstance() = OptionNavigationFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidSupportInjection.inject(this)
         initViewModel()
     }
 
@@ -39,5 +34,4 @@ class MainNavigationFragment : LifecycleFragment() {
     private fun initUI() {
 
     }
-
 }

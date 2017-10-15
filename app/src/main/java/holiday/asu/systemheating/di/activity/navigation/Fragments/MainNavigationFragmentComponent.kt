@@ -2,7 +2,7 @@ package holiday.asu.systemheating.di.activity.navigation.Fragments
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import holiday.asu.systemheating.ui.NavigationBottom.MainNavigationFragment
+import holiday.asu.systemheating.ui.NavigationBottom.Fragments.MainNavigationFragment
 
 @Subcomponent(modules = arrayOf(MainNavigationFragmentModule::class))
 interface MainNavigationFragmentComponent : AndroidInjector<MainNavigationFragment> {
