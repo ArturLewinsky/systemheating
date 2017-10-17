@@ -3,6 +3,7 @@ package holiday.asu.systemheating.ui.NavigationBottom.Fragments
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -53,7 +54,6 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configViews()
-
     }
 
     private fun initViewModel() {
@@ -94,5 +94,4 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
     override fun onClick(position: Int, name: String) {
 
     }
-
 }
