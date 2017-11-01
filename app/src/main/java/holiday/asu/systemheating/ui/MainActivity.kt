@@ -50,6 +50,7 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
         mButton.setOnClickListener(View.OnClickListener {
             var intent: Intent = Intent(applicationContext, NavigationActivity::class.java)
             startActivity(intent)
+
         })
     }
 

@@ -6,8 +6,8 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorTextPrimary">#FFFFFF</color>
 
-    <color name="tab_disable">#979797</color>
+    <color name="tab_disable">#ffffff</color>
     <color name="tab_enable">#FFFFFF</color>
-    <color name="tab_checked">#000000</color>
-    <color name="tab_unchecked">#FFFFFF</color>
+    <color name="tab_checked">#ffffff</color>
+    <color name="tab_unchecked">#ffffff</color>
 </resources>

@@ -2,11 +2,12 @@ package holiday.asu.systemheating.ui.NavigationBottom.Fragments
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,8 +21,10 @@ import holiday.asu.systemheating.model.UserAdapter
 import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.utilly.BaseFragment
 import holiday.asu.systemheating.utilly.DialogLoad
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 import javax.inject.Inject
-
 
 class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserClickListener {
 
@@ -34,6 +37,8 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
     @BindView(R.id.recyclerViewMain)
     lateinit var mRecyclerView: RecyclerView
 
+    lateinit var mThread: Thread
+
     companion object {
         fun newInstance() = MainNavigationFragment()
     }
@@ -43,6 +48,7 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
         AndroidSupportInjection.inject(this)
         initViewModel()
         mUserList = ArrayList<UserModel>()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
