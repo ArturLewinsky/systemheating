@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField 'String', 'END_POINT', '"https://dorrestapi.herokuapp.com"'
+        buildConfigField 'String', 'END_POINT', '"http://145.239.83.114:8080"'
     }
     buildTypes {
         release {

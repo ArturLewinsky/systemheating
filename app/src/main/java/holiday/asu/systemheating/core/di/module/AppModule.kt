@@ -6,6 +6,7 @@ import android.content.Context
 import javax.inject.Singleton
 import dagger.Provides
 import holiday.asu.systemheating.core.factory.ViewModelFactory
+import holiday.asu.systemheating.core.factory.ViewTempModelFactory
 import holiday.asu.systemheating.di.activity.testactivity.MainActivityComponent
 import holiday.asu.systemheating.service.UserService
 
@@ -23,5 +24,10 @@ class AppModule {
     @Provides
     fun provideViewModelFactory(userService: UserService): ViewModelFactory {
         return ViewModelFactory(userService)
+    }
+
+    @Provides
+    fun provideViewTempModelFactory(userService: UserService): ViewTempModelFactory {
+        return ViewTempModelFactory(userService)
     }
 }

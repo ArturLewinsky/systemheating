@@ -17,6 +17,7 @@ import holiday.asu.systemheating.core.factory.ListViewModel
 import javax.inject.Inject
 import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.core.factory.ViewModelFactory
+import holiday.asu.systemheating.core.factory.ViewTempModelFactory
 import holiday.asu.systemheating.model.UserAdapter
 import holiday.asu.systemheating.ui.NavigationBottom.Activity.NavigationActivity
 import holiday.asu.systemheating.utilly.BaseActivity
@@ -26,8 +27,13 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
 
     @Inject
     lateinit var mViewModelFactory: ViewModelFactory
+    @Inject
+    lateinit var mViewTempModelFactory: ViewTempModelFactory
+
     private lateinit var  mAdapter: UserAdapter
+
     val progressDialog = DialogLoad()
+
     lateinit var mUserList: ArrayList<UserModel>
 
     @BindView(R.id.recyclerView)

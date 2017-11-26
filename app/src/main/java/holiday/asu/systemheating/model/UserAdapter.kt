@@ -31,10 +31,7 @@ open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
         val currUser = mUsersList.get(position)
 
         holder.mName.setText(currUser.name)
-        holder.mSurrname.setText(currUser.surrname)
-        holder.mTitle.setText(currUser.title)
-        if(currUser.favorite.equals(true))
-            holder.mFavorite.isChecked = true
+        holder.mSurrname.setText(currUser.temp.toString())
     }
 
     fun addUsers(usersModel: List<UserModel>) {
@@ -48,29 +45,21 @@ open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
 
     inner class Holder : RecyclerView.ViewHolder, View.OnClickListener {
 
-
         var mName: TextView
         var mSurrname: TextView
-        var mTitle: TextView
-        var mFavorite: CheckBox
 
         constructor(itemView : View) : super(itemView) {
-
             mName = itemView.findViewById<View>(R.id.name) as TextView
-            mSurrname = itemView.findViewById<View>(R.id.surrname) as TextView
-            mTitle = itemView.findViewById<View>(R.id.title) as TextView
-            mFavorite = itemView.findViewById<View>(R.id.favorite) as CheckBox
+            mSurrname = itemView.findViewById<View>(R.id.temp) as TextView
             itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
             mListener.onClick(getLayoutPosition(), mUsersList.get(getAdapterPosition()).toString())
-
         }
     }
 
     interface UserClickListener {
         fun onClick(position: Int, name: String)
     }
-
 }

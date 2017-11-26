@@ -9,7 +9,7 @@ import javax.inject.Singleton
 class OptionNavigationFragmentModule {
     @Singleton
     @Provides
-    fun provideNavigationView( mainNavigationFragment: OptionNavigationFragment): OptionNavigationFragment {
-        return mainNavigationFragment
+    fun provideNavigationView( optionNavigationFragment: OptionNavigationFragment): OptionNavigationFragment {
+        return optionNavigationFragment
     }
 }

@@ -4,7 +4,7 @@ import dagger.Subcomponent
 import dagger.android.AndroidInjector
 import holiday.asu.systemheating.ui.NavigationBottom.Activity.NavigationActivity
 
-@Subcomponent(modules = arrayOf(NavigationActivityModule::class, MainNavigationFragmentProvider::class))
+@Subcomponent(modules = arrayOf(NavigationActivityModule::class, MainNavigationFragmentProvider::class, OptionNavigationFragmentProvider::class))
 interface NavigationActivityComponent : AndroidInjector<NavigationActivity> {
     @Subcomponent.Builder
     abstract class Builder : AndroidInjector.Builder<NavigationActivity>()
