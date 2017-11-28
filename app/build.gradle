@@ -74,4 +74,6 @@ dependencies {
     compile "org.jetbrains.anko:anko-appcompat-v7-commons:0.10.2"
     compile "org.jetbrains.anko:anko-appcompat-v7:0.10.2"
     compile "org.jetbrains.anko:anko-coroutines:0.10.2"
+
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.3'
 }

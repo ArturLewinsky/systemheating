@@ -10,7 +10,6 @@ import holiday.asu.systemheating.core.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 
-
 class App : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
@@ -18,7 +17,6 @@ class App : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var mDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
 
     override fun onCreate() {
         super.onCreate()

@@ -1,6 +1,5 @@
 package holiday.asu.systemheating.service
 
-import android.widget.Toast
 import okhttp3.Response
 import okhttp3.WebSocketListener
 import okhttp3.WebSocket
@@ -16,7 +15,6 @@ class WebSocketClass: WebSocketListener {
 
     override fun onOpen(webSocket: WebSocket?, response: Response?) {
         webSocket!!.send(this.message)
-
         webSocket.close(NORMAL_CLOSURE_STATUS, "message")
     }
 

@@ -27,6 +27,4 @@
             android:text="Temp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
-
-
 </LinearLayout>

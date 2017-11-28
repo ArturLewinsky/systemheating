@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SystemHeating</string>
+    <string name="app_name">SystemOfHeating</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_main2">Main2Activity</string>

@@ -22,7 +22,8 @@
         <activity
             android:name=".ui.NavigationDrawerTestActivity.TestActity"
             android:label="@string/title_activity_test_actity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.Autor.Activity.AutorActivity"></activity>
     </application>
 
 </manifest>

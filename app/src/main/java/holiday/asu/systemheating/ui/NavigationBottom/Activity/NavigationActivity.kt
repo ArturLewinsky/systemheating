@@ -1,5 +1,6 @@
 package holiday.asu.systemheating.ui.NavigationBottom.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
@@ -9,9 +10,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-
 import android.view.MenuItem
-
 import butterknife.BindView
 import butterknife.ButterKnife
 import dagger.android.AndroidInjection
@@ -19,6 +18,7 @@ import holiday.asu.systemheating.R
 import holiday.asu.systemheating.ui.NavigationBottom.Fragments.MainNavigationFragment
 import holiday.asu.systemheating.ui.NavigationBottom.Fragments.OptionNavigationFragment
 import holiday.asu.systemheating.model.ViewPagerAdapter
+import holiday.asu.systemheating.ui.Autor.Activity.AutorActivity
 
 class NavigationActivity :  AppCompatActivity(),
         BottomNavigationView.OnNavigationItemSelectedListener,
@@ -65,23 +65,9 @@ class NavigationActivity :  AppCompatActivity(),
         when (item.itemId) {
             R.id.navigation_home -> mViewPager.setCurrentItem(0)
             R.id.navigation_dashboard -> mViewPager.setCurrentItem(1)
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_autor -> {
+                var intent = Intent(application, AutorActivity::class.java)
+                startActivity(intent)
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START)

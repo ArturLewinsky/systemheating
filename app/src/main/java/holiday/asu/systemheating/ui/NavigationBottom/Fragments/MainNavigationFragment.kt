@@ -17,27 +17,56 @@ import holiday.asu.systemheating.core.factory.ListViewModel
 import holiday.asu.systemheating.core.factory.ViewModelFactory
 import holiday.asu.systemheating.model.UserAdapter
 import holiday.asu.systemheating.model.UserModel
+import holiday.asu.systemheating.service.UserService
 import holiday.asu.systemheating.utilly.BaseFragment
 import holiday.asu.systemheating.utilly.DialogLoad
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import javax.inject.Inject
 
 class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserClickListener {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var mServiceApi: UserService
+
     private lateinit var  mAdapter: UserAdapter
+
     val progressDialog = DialogLoad()
+
     lateinit var mUserList: ArrayList<UserModel>
 
     @BindView(R.id.recyclerViewMain)
+
     lateinit var mRecyclerView: RecyclerView
 
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         initViewModel()
         mUserList = ArrayList<UserModel>()
 
+        launch(UI) {
+            while(true) {
+                delay(15000)
+                compositeDisposable.add(
+                        mServiceApi.getUsers()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(Schedulers.io())
+                                .doOnSubscribe({ progressDialog.show(childFragmentManager, "tag") })
+                                .doAfterTerminate({ progressDialog.cancel() })
+                                .subscribe({result ->
+                                    processRefresh(result)} )
+                )
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -70,6 +99,15 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
         mAdapter.addUsers(response)
     }
 
+    private fun processRefresh(response: List<UserModel>?) {
+        mUserList = response as ArrayList<UserModel>
+        mAdapter.refresh(mUserList)
+    }
+
+    private fun observeRefresh() {
+        mViewModel.getData().observe(this, Observer<List<UserModel>> { response -> processRefresh(response) })
+    }
+
     private fun isLoading(loading: Boolean?) {
         if (loading!!)
             progressDialog.show(childFragmentManager, "tag")
@@ -87,6 +125,5 @@ class MainNavigationFragment : BaseFragment<ListViewModel>(), UserAdapter.UserCl
     }
 
     override fun onClick(position: Int, name: String) {
-
     }
 }

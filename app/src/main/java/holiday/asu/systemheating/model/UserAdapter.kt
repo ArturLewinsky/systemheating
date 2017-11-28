@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import holiday.asu.systemheating.R
+import java.util.function.UnaryOperator
 
 
 open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
@@ -30,14 +31,20 @@ open class UserAdapter : RecyclerView.Adapter<UserAdapter.Holder> {
     override fun onBindViewHolder(holder: Holder , position: Int ) {
         val currUser = mUsersList.get(position)
 
-        holder.mName.setText(currUser.name)
-        holder.mSurrname.setText(currUser.temp.toString())
+        holder.mName.setText(currUser.name )
+        holder.mSurrname.setText(currUser.temp.toString() + "°C")
     }
 
     fun addUsers(usersModel: List<UserModel>) {
         mUsersList.addAll(usersModel)
         notifyDataSetChanged()
     }
+
+    fun refresh(usersModel: ArrayList<UserModel>) {
+        mUsersList = usersModel
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int {
         return mUsersList.size

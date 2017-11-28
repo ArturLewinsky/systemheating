@@ -1,7 +1,6 @@
 package holiday.asu.systemheating.core.factory
 
 import holiday.asu.systemheating.model.Temp
-import holiday.asu.systemheating.model.UserModel
 import holiday.asu.systemheating.service.UserService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

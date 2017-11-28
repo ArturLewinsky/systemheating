@@ -29,7 +29,6 @@ import javax.inject.Inject
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-
 class OptionNavigationFragment : BaseFragment<TempViewModel>() {
 
     @Inject
@@ -55,15 +54,11 @@ class OptionNavigationFragment : BaseFragment<TempViewModel>() {
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    var mLoading: Boolean = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         initViewModel()
-
         this.mTemp = ArrayList<Temp>()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -119,7 +114,7 @@ class OptionNavigationFragment : BaseFragment<TempViewModel>() {
 
     private fun processResponse(response: List<Temp>?) {
         this.mTemp = response as ArrayList<Temp>
-        mTextSet.text = mTemp!!.get(0).temp.toString()
+        mTextSet.text = mTemp!!.get(0).temp.toString() + "°C"
     }
 
     private fun isLoading(loading: Boolean?) {

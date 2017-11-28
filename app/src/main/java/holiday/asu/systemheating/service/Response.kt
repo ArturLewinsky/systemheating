@@ -3,7 +3,6 @@ package holiday.asu.systemheating.service
 import android.support.annotation.Nullable
 import holiday.asu.systemheating.model.Status
 
-
 class Response<T> {
 
     val status: Status

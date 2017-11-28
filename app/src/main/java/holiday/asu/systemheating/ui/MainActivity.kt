@@ -27,8 +27,6 @@ class MainActivity :  BaseActivity<ListViewModel>(), UserAdapter.UserClickListen
 
     @Inject
     lateinit var mViewModelFactory: ViewModelFactory
-    @Inject
-    lateinit var mViewTempModelFactory: ViewTempModelFactory
 
     private lateinit var  mAdapter: UserAdapter
 
